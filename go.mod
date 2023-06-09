@@ -6,7 +6,6 @@ require (
 	github.com/emvi/iso-639-1 v1.1.0
 	github.com/go-playground/validator/v10 v10.14.1
 	github.com/golang-migrate/migrate/v4 v4.16.1
-	github.com/gorilla/mux v1.8.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/stretchr/testify v1.8.4
 )

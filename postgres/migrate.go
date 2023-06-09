@@ -7,7 +7,6 @@ import (
 	"github.com/golang-migrate/migrate/v4"
 	_ "github.com/golang-migrate/migrate/v4/database/postgres"
 	_ "github.com/golang-migrate/migrate/v4/source/file"
-	log "github.com/sirupsen/logrus"
 )
 
 type MigrateConfig struct {
@@ -44,32 +43,17 @@ func runMigrations(config *MigrateConfig, mode string, version uint) error {
 }
 
 // Apply all migrations under migrations file path
-func MigrateUp(config *MigrateConfig) {
+func MigrateUp(config *MigrateConfig) error {
 	// Migrations is always performed on default database
-	err := runMigrations(config, "up", 0)
-	if err != nil {
-		log.Panicf("Migrations failed! Error: %v", err)
-	} else {
-		log.Infof("Migrations applied successfully")
-	}
+	return runMigrations(config, "up", 0)
 }
 
 // Revert all migrations under migrations file path
 // NOTE: This function is used only while testing to cleanup database
-func MigrateDown(config *MigrateConfig) {
-	err := runMigrations(config, "down", 0)
-	if err != nil {
-		log.Panicf("Migrations drop failed! Error: %v", err)
-	} else {
-		log.Infof("Migrations dropped successfully")
-	}
+func MigrateDown(config *MigrateConfig) error {
+	return runMigrations(config, "down", 0)
 }
 
-func Migrate(config *MigrateConfig, version uint) {
-	err := runMigrations(config, "version", version)
-	if err != nil {
-		log.Panicf("Migrations failed! Error: %v", err)
-	} else {
-		log.Infof("Migrations applied successfully")
-	}
+func Migrate(config *MigrateConfig, version uint) error {
+	return runMigrations(config, "version", version)
 }

@@ -1,8 +1,9 @@
 package str
 
 import (
+	"crypto/rand"
 	"fmt"
-	"math/rand"
+	"math/big"
 	"strings"
 )
 
@@ -18,7 +19,11 @@ func Random(n int) string {
 func RandomWithCharset(charset []rune, n int) string {
 	s := make([]rune, n)
 	for i := range s {
-		s[i] = charset[rand.Intn(len(charset))]
+		n, err := rand.Int(rand.Reader, big.NewInt(int64(len(charset))))
+		if err != nil {
+			return ""
+		}
+		s[i] = charset[n.Int64()]
 	}
 	return string(s)
 }
