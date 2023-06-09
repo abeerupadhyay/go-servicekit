@@ -61,7 +61,7 @@ func ParsePaginationFromURL(u *url.URL) *Pagination {
 	val = q.Get(paginationParamOffset)
 	if val != "" {
 		offset, err := strconv.Atoi(val)
-		if err != nil {
+		if err == nil {
 			p.Offset = offset
 		}
 	}
