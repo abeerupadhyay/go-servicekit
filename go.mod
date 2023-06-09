@@ -1,6 +1,6 @@
 module github.com/abeerupadhyay/go-servicekit
 
-go 1.19
+go 1.18
 
 require (
 	github.com/emvi/iso-639-1 v1.1.0
