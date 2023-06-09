@@ -21,7 +21,7 @@ type retryclient struct {
 	allowed []int
 }
 
-func NewRetryClient(r, d int) *retryclient {
+func NewRetryClient(r, d int) HTTPClient {
 	return &retryclient{
 		client:  &http.Client{},
 		retries: r,

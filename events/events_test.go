@@ -20,7 +20,7 @@ type DummySub struct {
 	z         *Z
 }
 
-func (s *DummySub) Call(ctx context.Context, d *EventData) {
+func (s *DummySub) Call(_ context.Context, d *EventData) {
 	s.eventName = string(d.Event)
 	s.sentAt = d.SentAt
 	s.z = &Z{}
@@ -30,7 +30,6 @@ func (s *DummySub) Call(ctx context.Context, d *EventData) {
 }
 
 func TestPublishEvent(t *testing.T) {
-
 	assert := assert.New(t)
 	ctx := context.Background()
 
@@ -38,12 +37,13 @@ func TestPublishEvent(t *testing.T) {
 	sub := &DummySub{}
 
 	// Register subscriber to the event
-	event.Subscribe(sub)
+	err := event.Subscribe(sub)
+	assert.Nil(err)
 
 	// Data being sent on publishing event
 	z := &Z{Foo: "foo", Bar: 1}
 
-	err := event.Publish(ctx, z)
+	err = event.Publish(ctx, z)
 	if err != nil {
 		t.Fatalf("failed to publish event. %v", err)
 	}
@@ -55,7 +55,6 @@ func TestPublishEvent(t *testing.T) {
 }
 
 func TestPublishEventNoSubscriber(t *testing.T) {
-
 	ctx := context.Background()
 	event := Register("testing")
 
