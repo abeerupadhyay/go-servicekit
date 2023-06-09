@@ -77,7 +77,6 @@ func Subscribe(name string, s Subscriber) error {
 }
 
 func Publish(ctx context.Context, name string, v any) error {
-
 	name = strings.ToLower(name)
 	subs, ok := registry[name]
 	if !ok {

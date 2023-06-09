@@ -30,7 +30,6 @@ func (s *DummySub) Call(ctx context.Context, d *EventData) {
 }
 
 func TestPublishEvent(t *testing.T) {
-
 	assert := assert.New(t)
 	ctx := context.Background()
 
@@ -55,7 +54,6 @@ func TestPublishEvent(t *testing.T) {
 }
 
 func TestPublishEventNoSubscriber(t *testing.T) {
-
 	ctx := context.Background()
 	event := Register("testing")
 

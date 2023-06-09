@@ -23,7 +23,6 @@ type S struct {
 }
 
 func TestStructValidation(t *testing.T) {
-
 	testcases := []struct {
 		Name      string
 		Data      string
@@ -102,7 +101,6 @@ func TestStructValidation(t *testing.T) {
 
 	for _, tc := range testcases {
 		t.Run(tc.Name, func(t *testing.T) {
-
 			assert := assert.New(t)
 
 			s := &S{}

@@ -10,7 +10,6 @@ import (
 var V *validator.Validate
 
 func init() {
-
 	V = validator.New()
 
 	// Custom time-related validators
@@ -24,7 +23,6 @@ func init() {
 
 func Struct(v any) error {
 	err := V.Struct(v)
-
 	if err != nil {
 		errors, _ := err.(validator.ValidationErrors)
 		fe := errors[0]
